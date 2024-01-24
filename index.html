@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #pdf-viewer {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-    <embed src="21-23真题.pdf" width="100%" height="600px" type="application/pdf">
+    <div id="pdf-viewer"></div>
+
+    <script>
+        // PDF.js inline script
+        const pdfPath = '21-23真题.pdf';
+
+        // Load PDF
+        const loadingTask = pdfjsLib.getDocument(pdfPath);
+        loadingTask.promise.then((pdf) => {
+            // Fetch the first page
+            pdf.getPage(1).then((page) => {
+                const scale = 1.5;
+                const viewport = page.getViewport({ scale });
+
+                // Prepare canvas using PDF page dimensions
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                // Append canvas to viewer div
+                document.getElementById('pdf-viewer').appendChild(canvas);
+
+                // Render PDF page into canvas context
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport,
+                };
+                page.render(renderContext);
+            });
+        });
+    </script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 </body>
 </html>
