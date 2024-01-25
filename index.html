@@ -12,12 +12,18 @@
         }
         #pdf-viewer-container {
             flex: 1;
+            position: relative;
         }
         #pdf-buttons {
+            position: fixed;
+            top: 0;
+            left: -200px;
             width: 200px;
+            height: 100%;
             padding: 10px;
             background-color: #f0f0f0;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: left 0.3s ease;
         }
         button {
             display: block;
@@ -26,9 +32,18 @@
             padding: 5px;
             cursor: pointer;
         }
+        #toggle-menu-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
+    <div id="toggle-menu-btn" onclick="toggleMenu()">☰</div>
+
     <div id="pdf-buttons">
         <button onclick="loadPDF('三角函数')">三角函数</button>
         <button onclick="loadPDF('复数')">复数</button>
@@ -46,6 +61,11 @@
     </div>
 
     <script>
+        function toggleMenu() {
+            const menu = document.getElementById('pdf-buttons');
+            menu.style.left = menu.style.left === '0px' ? '-200px' : '0px';
+        }
+
         function loadPDF(filename) {
             const pdfPath = `${filename}.pdf`;
             document.getElementById('pdf-viewer').src = pdfPath;
