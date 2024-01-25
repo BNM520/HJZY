@@ -48,9 +48,10 @@
             const dropdown = document.getElementById('pdf-file');
 
             pdfFiles.forEach((file, index) => {
+                const fileName = file.match(/\/([^\/?#]+)[^\/]*$/)[1]; // Extract filename from URL
                 const option = document.createElement('option');
                 option.value = file;
-                option.textContent = `File ${index + 1}`;
+                option.textContent = fileName;
                 dropdown.appendChild(option);
             });
         }
