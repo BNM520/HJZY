@@ -13,6 +13,7 @@
         #pdf-viewer-container {
             flex: 1;
             position: relative;
+            transition: margin-left 0.3s ease;
         }
         #pdf-buttons {
             position: fixed;
@@ -63,12 +64,21 @@
     <script>
         function toggleMenu() {
             const menu = document.getElementById('pdf-buttons');
-            menu.style.left = menu.style.left === '0px' ? '-200px' : '0px';
+            const viewerContainer = document.getElementById('pdf-viewer-container');
+
+            if (menu.style.left === '0px') {
+                menu.style.left = '-200px';
+                viewerContainer.style.marginLeft = '0';
+            } else {
+                menu.style.left = '0px';
+                viewerContainer.style.marginLeft = '200px';
+            }
         }
 
         function loadPDF(filename) {
             const pdfPath = `${filename}.pdf`;
             document.getElementById('pdf-viewer').src = pdfPath;
+            toggleMenu();  // Close menu after selecting a file
         }
     </script>
 </body>
