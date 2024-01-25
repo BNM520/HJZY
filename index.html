@@ -25,58 +25,19 @@
     <div id="file-selector">
         <label for="pdf-file">Choose a PDF file:</label>
         <select id="pdf-file" onchange="loadSelectedPDF(this.value)">
-            <option value="https://github.com/BNM520/HJZY/raw/main/21-23真题.pdf">21-23真题</option>
-            <option value="https://github.com/BNM520/HJZY/raw/main/三角函数.pdf">三角函数</option>
-            <option value="https://github.com/BNM520/HJZY/raw/main/复数.pdf">复数</option>
-            <option value="https://github.com/BNM520/HJZY/raw/main/平面向量.pdf">平面向量</option>
-            <option value="https://github.com/BNM520/HJZY/raw/main/解三角形.pdf">解三角形</option>
+            <option value="https://6xjfb8-my.sharepoint.com/personal/bnm_6xjfb8_onmicrosoft_com/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fbnm%5F6xjfb8%5Fonmicrosoft%5Fcom%2FDocuments%2F%E5%AF%92%E5%81%87%E4%BD%9C%E4%B8%9A%2F21%2D23%E7%9C%9F%E9%A2%98%2Epdf&parent=%2Fpersonal%2Fbnm%5F6xjfb8%5Fonmicrosoft%5Fcom%2FDocuments%2F%E5%AF%92%E5%81%87%E4%BD%9C%E4%B8%9A">PDF1</option>
+            <option value="<YOUR_ONEDRIVE_LINK_TO_PDF2>">PDF2</option>
             <!-- Add more options as needed -->
         </select>
     </div>
 
-    <div id="pdf-viewer"></div>
+    <iframe id="pdf-viewer" src="<YOUR_ONEDRIVE_LINK_TO_PDF1>" width="100%" height="100%" frameborder="0"></iframe>
 
-    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
-        // PDF.js script
         function loadSelectedPDF(selectedFile) {
             const pdfPath = selectedFile;
-
-            // Clear existing canvas
-            const oldCanvas = document.querySelector('canvas');
-            if (oldCanvas) {
-                oldCanvas.parentNode.removeChild(oldCanvas);
-            }
-
-            // Load PDF
-            const loadingTask = pdfjsLib.getDocument(pdfPath);
-            loadingTask.promise.then((pdf) => {
-                // Fetch the first page
-                pdf.getPage(1).then((page) => {
-                    const scale = 1.5;
-                    const viewport = page.getViewport({ scale });
-
-                    // Prepare canvas using PDF page dimensions
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-
-                    // Append canvas to viewer div
-                    document.getElementById('pdf-viewer').appendChild(canvas);
-
-                    // Render PDF page into canvas context
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport,
-                    };
-                    page.render(renderContext);
-                });
-            });
+            document.getElementById('pdf-viewer').src = pdfPath;
         }
-
-        // Initial load
-        loadSelectedPDF("https://github.com/BNM520/HJZY/raw/main/21-23真题.pdf");
     </script>
 </body>
 </html>
