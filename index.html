@@ -8,7 +8,7 @@
 <body>
 
     <label for="directorySelector">选择PDF文件：</label>
-    <select id="directorySelector" onchange="changePDF()">
+    <select id="directorySelector">
         <option value="三角函数.pdf">三角函数</option>
         <option value="复数.pdf">复数</option>
         <option value="平面向量.pdf">平面向量</option>
@@ -20,15 +20,12 @@
         <option value="21-23真题.pdf">21-23真题</option>
     </select>
 
-    <br><br>
-
-    <embed id="pdfViewer" width="100%" height="600px" type="application/pdf">
+    <button onclick="openPDF()">打开PDF</button>
 
     <script>
-        function changePDF() {
+        function openPDF() {
             var selectedPDF = document.getElementById("directorySelector").value;
-            var pdfViewer = document.getElementById("pdfViewer");
-            pdfViewer.src = selectedPDF;
+            window.open(selectedPDF, '_blank');
         }
     </script>
 
