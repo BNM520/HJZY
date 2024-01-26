@@ -8,7 +8,7 @@
         body {
             background-color: #f4f4f4;
             font-family: 'Arial', sans-serif;
-            text-align: center;
+            text-align: left;
             margin: 0;
             padding: 20px;
         }
@@ -44,32 +44,9 @@
             animation: bounceColor 1s infinite alternate, changeColor 5s infinite;
         }
 
-        @keyframes bounceColor {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-10px);
-            }
-        }
 
-        @keyframes changeColor {
-            0% {
-                color: #333;
-            }
-            25% {
-                color: #e74c3c;
-            }
-            50% {
-                color: #27ae60;
-            }
-            75% {
-                color: #f39c12;
-            }
-            100% {
-                color: #3498db;
-            }
-        }
+
+ 
 
         #currentTime {
             font-size: 16px;
@@ -124,7 +101,7 @@
 </head>
 <body>
 
-    <label for="directorySelector">选择PDF文件：</label>
+    <label for="directorySelector">选择模块</label>
     <select id="directorySelector">
         <option value="三角函数.pdf">三角函数</option>
         <option value="复数.pdf">复数</option>
@@ -137,13 +114,23 @@
         <option value="21-23真题.pdf">21-23真题</option>
     </select>
 
-    <button onclick="openPDF()">打开PDF</button>
+    <button onclick="openPDF()">开始学习</button>
 
     <br><br>
 
-    <button onclick="openExternalLink()">跳转到外部链接</button>
+    <button onclick="openExternalLink()">今日打卡</button>
 
-    <p id="greeting">祝大家寒假快乐！</p>
+<p id="greeting">
+    1. 复习三角函数解三角形平面向量复数立体几何与空间向量，<br>
+       并完成模块化训练题目。<br><br>
+    2. 预习解析几何，数列模块，并完成模块化训练题目。<br>
+       注意事项：每日上传自己的学习内容和笔记，开学带来，<br>
+       先看前面的示范，再做题，看示范的时候做笔记，拍照上传！<br>
+       最后还有21-23真题，有余力的同学可以做一些学过的。<br>
+       开学来了最少写完一个本！<br><br>
+    寒假快乐！！！
+</p>
+
 
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="modal">
