@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>寒假快乐</title>
+    <title>寒假作业</title>
     <style>
         body {
             background-color: #f4f4f4;
@@ -38,25 +38,14 @@
         }
 
         p {
-            font-size: 24px;
+            font-size: 18px;
             margin-top: 20px;
-            font-weight: bold;
-            animation: bounceColor 1s infinite alternate, changeColor 5s infinite;
+            line-height: 1.5;
         }
 
-
-
- 
-
-        #currentTime {
-            font-size: 16px;
-            font-weight: bold;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: #fff;
-            padding: 5px 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        iframe {
+            width: 100%;
+            height: 500px; /* 设置合适的高度，根据需要调整 */
         }
 
         @media only screen and (max-width: 600px) {
@@ -118,19 +107,18 @@
 
     <br><br>
 
-    <button onclick="openExternalLink()">今日打卡</button>
+    <button onclick="openExternalLink()">每日打卡</button>
 
-<p id="greeting">
-    1. 复习三角函数解三角形平面向量复数立体几何与空间向量，<br>
-       并完成模块化训练题目。<br><br>
-    2. 预习解析几何，数列模块，并完成模块化训练题目。<br>
-       注意事项：每日上传自己的学习内容和笔记，开学带来，<br>
-       先看前面的示范，再做题，看示范的时候做笔记，拍照上传！<br>
-       最后还有21-23真题，有余力的同学可以做一些学过的。<br>
-       开学来了最少写完一个本！<br><br>
-    寒假快乐！！！
-</p>
-
+    <p id="greeting">
+        1. 复习三角函数解三角形平面向量复数立体几何与空间向量，<br>
+           并完成模块化训练题目。<br><br>
+        2. 预习解析几何，数列模块，并完成模块化训练题目。<br>
+           注意事项：每日上传自己的学习内容和笔记，开学带来，<br>
+           先看前面的示范，再做题，看示范的时候做笔记，拍照上传！<br>
+           最后还有21-23真题，有余力的同学可以做一些学过的。<br>
+           开学来了最少写完一个本！<br><br>
+        寒假快乐！！！
+    </p>
 
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="modal">
@@ -152,15 +140,27 @@
         // Function to update the current time in the DOM
         function updateCurrentTime() {
             const currentTimeElement = document.getElementById('currentTime');
-            currentTimeElement.textContent = `${getCurrentDateTime()}`;
+            currentTimeElement.textContent = `当前时间：${getCurrentDateTime()}`;
         }
 
         setInterval(updateCurrentTime, 1000); // Update every second
 
-        function openPDF() {
-            var selectedPDF = document.getElementById("directorySelector").value;
-            window.open(selectedPDF, '_blank');
-        }
+function openPDF() {
+    var selectedPDF = document.getElementById("directorySelector").value;
+
+    // Remove previously embedded PDF
+    var existingIframe = document.querySelector('iframe');
+    if (existingIframe) {
+        existingIframe.remove();
+    }
+
+    // Create and embed new PDF
+    var iframe = document.createElement('iframe');
+    iframe.src = selectedPDF;
+    iframe.setAttribute('frameborder', '0');
+    document.body.appendChild(iframe);
+}
+
 
         function openExternalLink() {
             var externalLink = "https://6xjfb8-my.sharepoint.com/:f:/g/personal/bnm_6xjfb8_onmicrosoft_com/EjAY1yX1HTpAiYdCIUfU0EUBJEwgvWOvn3YR45Hm8As_rQ";
